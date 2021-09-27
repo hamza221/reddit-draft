@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production tailwindcss build -i public/styles/tailwind.css -o public/styles/style.css && node server.js",
     "dev": "yarn tailwind:css && nodemon server.js",
-    "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
+    "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css",
+    "purge:css": "cross-env NODE_ENV=production tailwindcss build -i public/styles/tailwind.css -o public/styles/style.css"
   },
   "author": "Hamza Ben Khoud King",
   "license": "ISC",
