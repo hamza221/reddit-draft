@@ -1,0 +1,44 @@
+  
+<%- include('partials/header.ejs')  %>   
+  
+
+<div class="container grid grid-cols-7">
+  <div class="left-menu col-span-2">Menu</div>
+  <div class="posts-container col-span-3">
+      <div class="filters"></div>
+      <div class="posts-container">
+          <div class="ring-1 ring-gray-100 p-4"> 
+               <header class="flex justify-between items-center mb-4">
+                   <div class="author">
+                      <img src="/images/img1.jpg" class="w-12 h-12 inline-block rounded-full"alt="img">
+                      <h3 class="inline-block ml-2 text-sm text-gray-400">Hamza Ben Khoud</h3>
+                      <p class="inline-block text-sm text-gray-400">-1 hour ago</p>
+                   </div>
+                    <i class='bx bx-heart' style="font-size:1.5rem; margin-top:-4px; cursor:pointer;"></i>
+               </header>
+               <div class="flex justify-between items-start">
+                 <div class="container">
+                      <h1 class="font-bold text-gray-900 text-lg capitalize mb-2"><%= post.title %></h1>
+                      <p class="text-gray-500"> <%= post.summary %> </p>
+                      <div class="comments">      
+                      </div>
+                 </div>
+                 <div class="post-img ml-6">
+                   <img src="<%= post.url%>" class="w-64 h-36" alt="post-img">
+                 </div>
+               </div> 
+            </div>   
+      </div>
+      <div class="comments-container">
+         <%- include('partials/commentInput', {id :post._id})  %>
+         <% if (post.comments.length) { %>
+            <% post.comments.forEach(comment => { %>
+                <%- include('partials/comment', {body:comment.body, id:comment._id, comments:comment.comments} )  %> 
+            <% }) %>
+        <% } %>
+      </div>
+   </div>
+   <div class="right-menu"></div>
+</div>
+  
+<script src="/js/comments.js"></script>

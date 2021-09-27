@@ -1,0 +1,14 @@
+
+<div class="p-2 my-2">
+   <div class="flex justify-between">
+     <p class="mt-2"> <%= body %> </p>
+     <button class="btn reply" data-id="<%= id %>">Reply</button>
+   </div>
+   <div class="ml-6 border-l-2 border-gray-2 pl-4 mt-2">
+      <% if (comments.length) { %>
+            <% comments.forEach(comment => { %>
+                <p><%= comment.body %> </p>
+            <% }) %>
+      <% } %>
+   </div>
+</div>
