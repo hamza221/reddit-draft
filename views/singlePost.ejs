@@ -11,8 +11,8 @@
                <header class="flex justify-between items-center mb-4">
                    <div class="author">
                       <img src="/images/img1.jpg" class="w-12 h-12 inline-block rounded-full"alt="img">
-                      <h3 class="inline-block ml-2 text-sm text-gray-400">Hamza Ben Khoud</h3>
-                      <p class="inline-block text-sm text-gray-400">-1 hour ago</p>
+                      <h3 class="inline-block ml-2 text-sm text-gray-400"><%= post.author.username %> </h3>
+                      <p class="inline-block text-sm text-gray-400">-<%= post.updatedAt.toLocaleTimeString([],{hour12:false}) %> </p>
                    </div>
                     <i class='bx bx-heart' style="font-size:1.5rem; margin-top:-4px; cursor:pointer;"></i>
                </header>
@@ -30,10 +30,11 @@
             </div>   
       </div>
       <div class="comments-container">
-         <%- include('partials/commentInput', {id :post._id})  %>
+         <%- include('comments/commentInput', {id :post._id})  %>
          <% if (post.comments.length) { %>
+            <% console.log(post.comments[0]) %> 
             <% post.comments.forEach(comment => { %>
-                <%- include('partials/comment', {body:comment.body, id:comment._id, comments:comment.comments} )  %> 
+                <%- include('comments/comment', {author:comment.author.username,body:comment.body, id:comment._id, comments:comment.comments} )  %> 
             <% }) %>
         <% } %>
       </div>

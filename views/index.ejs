@@ -12,8 +12,8 @@
                <header class="flex justify-between items-center mb-4">
                    <div class="author">
                       <img src="/images/img1.jpg" class="w-12 h-12 inline-block rounded-full"alt="img">
-                      <h3 class="inline-block ml-2 text-sm text-gray-400">Hamza Ben Khoud</h3>
-                      <p class="inline-block text-sm text-gray-400">-1 hour ago</p>
+                      <h3 class="inline-block ml-2 text-sm text-gray-400"><%= post.author.username %></h3>
+                      <p class="inline-block text-sm text-gray-400"><%=  post.updatedAt.toLocaleTimeString([],{hour12:false}) %> </p>
                    </div>
                     <i class='bx bx-heart' style="font-size:1.5rem; margin-top:-4px; cursor:pointer;"></i>
                </header>

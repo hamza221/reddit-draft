@@ -1,6 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 
 function errorHandler(err, req, res, next) {
+  console.error(err)
   if (err instanceof ErrorResponse) {
     res.status(err.statusCode).json({ msg: err.msg, code: err.statusCode });
     return;

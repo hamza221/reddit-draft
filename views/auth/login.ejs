@@ -1,0 +1,18 @@
+
+
+<%- include('../partials/header') %>
+<div class="mx-auto w-1/4 shadow p-6 ring-1 ring-gray-100 rounded">
+    <form action='/auth/login' method="post" class="">
+         <div class="form-group">
+            <label>Email:</label><br>
+            <input type="email" name="email" class="form-control" required>
+         </div> 
+        <div class="form-group">
+         <label>Password:</label><br>
+         <input type="password" name="password" class="form-control" required><br>
+        </div> 
+        <button type="submit" class="btn mb-3">Login</button>
+        <a href="/auth/register" class="underline ">Register</a>
+    </form>
+</div>
+<%- include('../partials/footer') %>

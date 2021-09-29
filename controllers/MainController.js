@@ -7,6 +7,7 @@ class MainController {
 
   static async homePage(req, res, next) {
     try {
+      console.log(req.session)
       const posts = await Post.find({}).lean();
       if (!posts) {
         return next(ErrorResponse.notFound("no post found"));
@@ -29,7 +30,7 @@ class MainController {
       if (!title || !url || !summary) {
         return next(ErrorResponse.badRequest("all fields are required"));
       }
-      const post = new Post({ title, url, summary });
+      const post = new Post({ title, url, summary, author:req.session.user._id });
 
       await post.save();
       res.redirect("/");
@@ -54,7 +55,7 @@ class MainController {
 
     try{
         const commentBody = req.body.comment;
-        const comment = await  Comment.create({body:commentBody});
+        const comment = await  Comment.create({body:commentBody, author:req.session.user._id});
         await Post.findOneAndUpdate({_id:req.params.id},{$push:{comments :comment._id} },{new:true});
         res.redirect('back');
     }catch(err){
@@ -63,7 +64,7 @@ class MainController {
   }
   static async replyToComment(req,res, next){
     try {
-      const comment = await Comment.create({body:req.body.reply})
+      const comment = await Comment.create({body:req.body.reply, author:req.session.user._id})
       await Comment.findOneAndUpdate({_id:req.params.id}, {$push:{comments: comment._id}})
       res.redirect('back')
     } catch (err) {

@@ -11,9 +11,23 @@
                 ">New Post</a>
 
              </li> 
+             <% if(user){ %>
+               <li>
+                  <a href="/profile" class="btn mr-4"><%= user.username %> </a>
+               </li>
+               <li>
+                  <form action="/auth/logout" method="post">
+                     <button type="submit" class="btn mr-4">Logout</button>
+                  </form>
+               </li>
+            <% } else{ %>
              <li>
-                <a href="/posts/new" class="btn">Logout</a>
+                <a href="/auth/login" class="btn mr-4">Login</a>
+             </li> 
+             <li>
+                <a href="/auth/register" class="btn">Register</a>
              </li> 
             </ul>
+            <% } %> 
         </div>
    </nav>
